@@ -12,9 +12,15 @@ import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
+import AddTutorial from "./components/AddTutorial";
+import Tutorial from "./components/Tutorial";
+import TutorialsList from "./components/TutorialsList";
+
 
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
+
+
 
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
@@ -78,12 +84,25 @@ const App = () => {
           )}
 
           {showAdminBoard && (
+            <div>
             <li className="nav-item">
               <Link to={"/admin"} className="nav-link">
                 Admin Board
               </Link>
             </li>
-          )}
+            <li className="nav-item">
+              <Link to={"/tutorials"} className="nav-link">
+                Tutorials
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/add"} className="nav-link">
+                Add
+              </Link>
+            </li>
+            </div>
+
+        )}
 
           {currentUser && (
             <li className="nav-item">
@@ -91,7 +110,7 @@ const App = () => {
                 User
               </Link>
             </li>
-          )}
+        )}
         </div>
 
         {currentUser ? (
@@ -134,6 +153,10 @@ const App = () => {
           <Route path="/user" element={<BoardUser />} />
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} />
+          <Route path="/tutorials" element={<TutorialsList/>} />
+          <Route exact path="/add" element={<AddTutorial/>} />
+          <Route path="/tutorials/:id" element={<Tutorial/>} />
+
         </Routes>
       </div>
 
