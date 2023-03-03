@@ -154,7 +154,7 @@ const App = () => {
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} />
           <Route path="/tutorials" element={<TutorialsList/>} />
-          <Route exact path="/add" element={<AddTutorial/>} />
+          <Route path="/add" element={<AddTutorial/>} />
           <Route path="/tutorials/:id" element={<Tutorial/>} />
 
         </Routes>

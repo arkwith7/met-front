@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { updateTutorial, deleteTutorial } from "../actions/tutorials";
 import TutorialDataService from "../services/TutorialService";
@@ -12,6 +13,9 @@ const Tutorial = (props) => {
   };
   const [currentTutorial, setCurrentTutorial] = useState(initialTutorialState);
   const [message, setMessage] = useState("");
+  // const routeParams = useParams();
+  const {id} = useParams();
+  console.log("편집 tutorial id : ", id)
 
   const dispatch = useDispatch();
 
@@ -19,16 +23,19 @@ const Tutorial = (props) => {
     TutorialDataService.get(id)
       .then(response => {
         setCurrentTutorial(response.data);
-        console.log(response.data);
       })
       .catch(e => {
         console.log(e);
       });
   };
 
+  // useEffect(() => {
+  //   getTutorial(props.match.params.id);
+  // }, [props.match.params.id]);
+
   useEffect(() => {
-    getTutorial(props.match.params.id);
-  }, [props.match.params.id]);
+    getTutorial(id);
+  }, [id]);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
